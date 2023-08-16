@@ -46,27 +46,26 @@ const userController = {
     })
       .then(user => {
         if (!user) throw new Error("User didn't exist.")
-        // console.log(user.Comments)
 
-        // const uniqueComments = []
-        // const restaurantIds = new Set()
+        const uniqueComments = []
+        const restaurantIds = new Set()
 
-        // user.Comments.forEach(comment => {
-        //   if (!restaurantIds.has(comment.Restaurant.id)) {
-        //     restaurantIds.add(comment.Restaurant.id)
-        //     uniqueComments.push(comment)
-        //   }
-        // })
-        // user.Comments = uniqueComments
+        user.Comments.forEach(comment => {
+          if (!restaurantIds.has(comment.Restaurant.id)) {
+            restaurantIds.add(comment.Restaurant.id)
+            uniqueComments.push(comment)
+          }
+        })
 
-        // console.log(user.Comments)
+        user.setDataValue('Comments', uniqueComments)
+
         const result = {
           ...user.toJSON(),
           favoritedCount: user.FavoritedRestaurants.length,
           followingCount: user.Followings.length,
           followerCount: user.Followers.length
         }
-        // console.log(result)
+
         res.render('users/profile', { user: result })
       })
       .catch(err => next(err))
