@@ -1,5 +1,5 @@
-const { Restaurant, User, Category } = require('../models')
-const { imgurFileHandler } = require('../helpers/file-helpers')
+const { Restaurant, User, Category } = require('../../models')
+const { imgurFileHandler } = require('../../helpers/file-helpers')
 // const { localFileHandler } = require('../helpers/file-helpers')
 
 const adminController = {
@@ -29,7 +29,7 @@ const adminController = {
     const { file } = req // 把檔案取出來，也可以寫成 const file = req.file
 
     return imgurFileHandler(file)
-    // localFileHandler(file) // 把取出的檔案傳給 file-helper 處理後
+      // localFileHandler(file) // 把取出的檔案傳給 file-helper 處理後
       .then(filePath => Restaurant.create({ // 再 create 這筆餐廳資料
         name,
         tel,
