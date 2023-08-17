@@ -8,7 +8,7 @@ const passport = require('./config/passport')
 const handlebarsHelpers = require('./helpers/handlebars-helpers')
 const { getUser } = require('./helpers/auth-helpers') // 引入自定義的 auth-helpers
 
-const { pages } = require('./routes')
+const { pages, apis } = require('./routes')
 
 // const routes = require('./routes')
 
@@ -40,6 +40,7 @@ app.use((req, res, next) => {
   next()
 })
 
+app.use('/api', apis)
 app.use(pages)
 
 app.listen(port, () => {
