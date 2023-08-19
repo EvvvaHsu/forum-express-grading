@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const path = require('path') // 引入 path 套件
 const express = require('express')
 const handlebars = require('express-handlebars')
@@ -11,10 +15,6 @@ const { getUser } = require('./helpers/auth-helpers') // 引入自定義的 auth
 const { pages, apis } = require('./routes')
 
 // const routes = require('./routes')
-
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
 
 const app = express()
 const port = process.env.PORT || 3000
